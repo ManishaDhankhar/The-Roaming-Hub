@@ -1,0 +1,103 @@
+<style>
+  /* Make the collapse a flexible, wrap-capable area and allow it to grow so items align */
+  .navbar-collapse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+  }
+  /* ensure the toggler sits at the far right (and vertically centered) on small screens */
+  @media (max-width: 767.98px) {
+    .navbar-toggler {
+      margin-left: auto;
+      margin-right: 0;
+    }
+    /* let the collapse span full width below md so center search aligns correctly */
+    .navbar-collapse { width: 100%; }
+  }
+  /* Explicit ordering so brand, toggler, centered search, and right navs line up predictably */
+  .navbar-brand { order: 0; }
+  .navbar-toggler { order: 1; align-self: center; display: flex; align-items: center; justify-content: center; padding: 0.25rem 0.5rem; border: none; }
+  .navbar-toggler .navbar-toggler-icon { background-size: 1.25rem 1.25rem; }
+
+  /* Center the search block and constrain its width */
+  .search {
+    order: 2;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .search .d-flex,
+  .search .form-inline {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .search .form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    /* border-radius: 15% !important; */
+  }
+
+  /* Keep nav groups aligned and ensure the right-side nav stays to the end */
+  .navbar-nav { display: flex; align-items: center; }
+  .navbar-nav:first-child { margin-right: 1rem; }
+  .navbar-nav.ms-auto { order: 3; margin-left: auto; }
+
+  /* Ensure the container centers items and allows wrapping on small screens */
+  .navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .search .btn {
+    flex: 0 0 auto;
+    margin: 0;
+    /* border-radius: 25% ; */
+    background-color: #fa4768 !important;
+  }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="search">
+        <form class="d-flex" role="search" action="/search" method="GET">
+          <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+          <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <% if (typeof currUser === 'undefined' || !currUser) { %>
+        <a class="nav-link" href="/signup"><b>sign up</b></a>
+         <a class="nav-link" href="/login"><b>log in</b></a>
+        <% } else { %>
+          <a class="nav-link" href="/logout"><b>logout</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

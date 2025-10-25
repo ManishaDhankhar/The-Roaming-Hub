@@ -1,0 +1,26 @@
+<% layout('/layouts/boilerplate') %>
+</br>
+ <h3 class="mb-3 d-flex justify-content-center align-items-center">Signup in Wanderlust</h3>
+    <form method="POST" action="/signup" novalidate class="needs-validation">
+
+        <div class="mb-3 d-flex flex-column justify-content-center align-items-start" >
+        <label for="username" class="form-label">Username</label>
+        <input id="username" placeholder="Enter username" name="username" class="form-control form-control-sm w-50" type="text" required >
+        <div class="valid-feedback">It looks good!</div>
+        <div class="invalid-feedback">Enter valid Title</div>
+        </div>
+        <div class="mb-3 d-flex flex-column justify-content-center align-items-start" >
+        <label for="email" class="form-label">Email</label>
+        <input id="email" placeholder="abc@gmail.com" name="email" class="form-control form-control-sm w-50" type="email" required >
+        <div class="valid-feedback">It looks good!</div>
+        <div class="invalid-feedback">Enter valid Title</div>
+        </div>
+        <div class="mb-3 d-flex flex-column justify-content-center align-items-start" >
+        <label for="password" class="form-label">Password</label>
+        <input id="password" name="password" class="form-control form-control-sm w-50" type="password" required >
+        <div class="valid-feedback">It looks good!</div>
+        <div class="invalid-feedback">Enter valid Title</div>
+        </div>
+        <button class="btn btn-newlist btn-primary" type="submit">signup</button></br></br></br></br></br></br></br>
+        </form>
+    

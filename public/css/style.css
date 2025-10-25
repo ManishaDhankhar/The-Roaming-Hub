@@ -1,0 +1,130 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+ /* navbar */
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+.fa-compass{
+    color: #ff385c ;
+    font-size: 2rem;
+}
+.nav-link{
+    color: #222222 !important;
+}
+/* footer */
+.f-info{
+    height: 8rem;
+    background-color:#ebebeb;
+    color: #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    line-height: 2.2rem;
+}
+.f-info-links a{
+    text-decoration: none ;
+  
+    color: #222222;
+
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info-socials i{
+    margin-left: 0.8rem;
+    font-size: 1.4rem;
+}
+ .f-info-socials,.f-info-links{
+   width: 100%;
+   text-align: center;
+} 
+.f-info-brand{
+    font-size:1rem;
+    font-weight: 400;
+}
+/* body cards */
+.listing-card{
+    border: none !important;
+    margin-left: 1.2rem !important;
+    margin-bottom:1.2rem !important ;
+}
+.image{
+    background-color:transparent !important;
+    border-radius: 1rem;
+    border-top-radius:1rem !important ;
+    width: 100% !important;
+}
+.card-body{
+    padding: 0%;
+    
+}
+.card-link{
+    text-decoration: none;
+}
+.card-img-overlay{
+    opacity: 0 !important;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+/* show overlay only when hovering that card's image */
+.image:hover .card-img-overlay,
+.listing-card:hover .image .card-img-overlay{
+    opacity: 0.2 !important;
+    background-color: white !important;
+    pointer-events: auto;
+}
+.listing-card:hover .card-img-overlay{
+    opacity: 0.2 !important;
+    background-color: white !important;
+}
+.text{
+    opacity: 1;
+    font-size: 2rem;
+    color: red;
+    display: flex;
+    justify-content: flex-end;
+}
+.align-items-start{
+    margin-left: 33% !important;
+}
+.btn-newlist{
+    margin-left: 33% !important;
+    background-color: #ff385c !important;
+    border: none !important;
+}
+.btn-dark{
+    background-color: #ff385c !important;
+    border: none !important;
+
+}
+/* show route */
+.show-btn{
+    text-decoration: none !important;
+    color: white !important;
+    border: none !important;
+}
+.show-card{
+    padding: 0 !important;
+    width: 100vh !important;
+}
+.show-image{
+     width:700px !important; 
+     height:350px !important;
+    border-radius: 3% !important;
+    color: #000 !important;
+}
+/* map */
+/* ensure all text over listing images is black */
+.listing-card .card-img-overlay,
+.listing-card .card-img-overlay * {
+    color: #000 !important;
+}
+#map {
+   height: 400px;
+   width: 100vh; 
+     }
