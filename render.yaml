@@ -1,0 +1,20 @@
+services:
+  
+  - type: web
+    name: wanderlust-app
+    branch: main
+    buildCommand: npm install
+    startCommand: node app.js
+   
+    plan: starter 
+    
+    env:
+      - key: PORT
+        value: 8080
+   
+    envVars:
+      - key: ATLAS_URL
+        value: mongodb+srv://Manisha:3SHjTbQQAsTcxmic@cluster0.jsqgaqf.mongodb.net/?appName=Cluster0
+
+      - key: SECRET
+        value: fhdlhflglfhg
