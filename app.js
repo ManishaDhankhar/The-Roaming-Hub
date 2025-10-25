@@ -118,6 +118,10 @@ const validateReview=(req,res,next)=>{
         next();
     }
 }
+
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 //Show Route
 
 //Post Route
