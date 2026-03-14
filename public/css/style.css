@@ -78,10 +78,7 @@ body{
     background-color: white !important;
     pointer-events: auto;
 }
-.listing-card:hover .card-img-overlay{
-    opacity: 0.2 !important;
-    background-color: white !important;
-}
+
 .text{
     opacity: 1;
     font-size: 2rem;
@@ -117,6 +114,43 @@ body{
      height:350px !important;
     border-radius: 3% !important;
     color: #000 !important;
+}
+/* Container for the image and heart */
+.image-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Positioning the heart on the top right of the image */
+.heart-icon-wrapper {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    color: white; /* White outline looks better on images */
+    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Adds a slight shadow so it's visible on light images */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.heart-icon-wrapper:hover {
+    transform: scale(1.2);
+    color: #ff385c; /* Airbnb pink color */
+}
+
+/* Fixing the Image Curve */
+.show-image {
+    width: 100% !important;
+    height: 400px !important; /* Increased height for better look */
+    object-fit: cover !important; /* This ensures the curve looks perfect */
+    border-radius: 1.5rem !important;
+}
+
+/* Fix Map Width */
+#map {
+    height: 400px;
+    width: 100% !important; /* Changed from 100vh to 100% */
+    border-radius: 1.5rem;
 }
 /* map */
 /* ensure all text over listing images is black */

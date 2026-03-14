@@ -1,0 +1,105 @@
+<% layout('/layouts/boilerplate') -%>
+
+<div class="row mt-3 justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <h3 class="text-center mb-4">Confirm Your Booking</h3>
+        
+        <div class="card listing-card show-card shadow-sm">
+            <img src="<%= listing.image.url %>" class="card-img-top show-image" alt="listing_image" style="height: 300px; object-fit: cover;">
+            
+            <div class="card-body">
+                <h5 class="card-title"><b><%= listing.title %></b></h5>
+                <p class="card-text text-muted"><%= listing.location %>, <%= listing.country %></p>
+                <hr>
+                
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="fs-5">Total Amount:</span>
+                    <span class="fs-4 fw-bold text-success">₹<%= listing.price.toLocaleString("en-IN") %></span>
+                </div>
+
+                <div class="alert alert-info py-2" style="font-size: 0.9rem;">
+                    <i class="fa-solid fa-circle-info"></i> You are currently in <b>Test Mode</b>. No real money will be charged.
+                </div>
+
+                <div class="btns mt-4 d-grid gap-2">
+                    <button id="rzp-button" class="btn btn-dark btn-lg">Pay with Razorpay</button>
+                    <a href="/listings/<%= listing._id %>" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    document.getElementById('rzp-button').onclick = async function (e) {
+        e.preventDefault();
+        
+        const rawPrice = "<%= listing.price %>".replace(/,/g, '');
+        const cleanPrice = Number(rawPrice);
+
+        try {
+            // 1. Create the Order
+            const response = await fetch('/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: 100 })
+            });
+
+            // SAFETY CHECK: If the server returns an error page, don't parse as JSON
+            if (!response.ok) {
+                const errorData = await response.text();
+                console.error("Server Error:", errorData);
+                alert("Order creation failed. Check your VS Code console.");
+                return;
+            }
+
+            const order = await response.json();
+
+            // 2. Open Razorpay
+            const options = {
+                "key": "rzp_test_SPnimEpolde5V2", 
+                "amount": order.amount,
+                "currency": "INR",
+                "name": "The Roaming Hub",
+                "description": "Booking for <%= listing.title %>",
+                "order_id": order.id,
+                "handler": async function (response) {
+                    const data = {
+                        razorpay_order_id: response.razorpay_order_id,
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_signature: response.razorpay_signature,
+                        listingId: "<%= listing._id %>",
+                        amount: order.amount
+                    };
+
+                    const verifyRes = await fetch("/verify-payment", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await verifyRes.json();
+                    if (result.status === "success") {
+                        window.location.href = "/listings";
+                    } else {
+                        alert("Payment Verification Failed!");
+                    }
+                },
+                "prefill": {
+                    "name": "<%= currUser ? currUser.username : '' %>",
+                    "email": "<%= currUser ? currUser.email : '' %>"
+                },
+                "theme": { "color": "#fe424d" } 
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+
+        } catch (err) {
+            console.error("Fetch Error:", err);
+            alert("Something went wrong with the network request.");
+        }
+    };
+</script>

@@ -31,7 +31,8 @@ router.route("/")
 // });
 // New Route (Shows the form to create a new listing)
 router.get("/new",isLogIn,controllerListing.renderNewForm);
-
+// NEW: Booking Route (Shows the confirm/payment page)
+router.get("/:id/book", isLogIn, wrapAsync(controllerListing.renderBookingForm));
 router.route("/:id")
 // Show Route (Displays a single listing)
 .get(wrapAsync(controllerListing.showListing))

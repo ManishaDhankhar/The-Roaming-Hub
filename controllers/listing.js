@@ -1,6 +1,6 @@
 const Listing = require("../models/listing");
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
-let mapToken="pk.eyJ1IjoibWFuaXNoYS0yMDA1IiwiYSI6ImNtaDF5NzI1djA4MzYyaXM5cGY2ZWF5aXcifQ.Of9VMTKYC9ce1I-NNabpfw";
+let mapToken=process.env.MAPBOX_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 module.exports.index=async (req, res) => {
     const alllistings = await Listing.find();
@@ -81,4 +81,14 @@ module.exports.destroyListing=async (req, res) => {
     await Listing.findByIdAndDelete(id);
     req.flash("success", "You deleted the listing.");
     res.redirect("/listings");
+}
+
+module.exports.renderBookingForm=async(req,res)=>{
+    let { id }=req.params;
+    const listing= await Listing.findById(id);
+    if(!listing){
+        req.flash("error","the listing you want to find does not exist");
+        return req.redirect("/listings");
+    }
+    res.render("listings/book.ejs",{listing});
 }
