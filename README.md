@@ -4,7 +4,7 @@
 [![Stack: Node.js](https://img.shields.io/badge/Backend-Node.js-green)](https://nodejs.org/)
 [![Stack: Python](https://img.shields.io/badge/AI--Service-Python-blue)](https://www.python.org/)
 [![Database: MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen)](https://www.mongodb.com/)
-[![AI: Gemini](https://img.shields.io/badge/AI-Gemini_1.5_Flash-orange)](https://ai.google.dev/)
+[![AI: Gemini](https://img.shields.io/badge/AI-Gemini_2.5_Flash-orange)](https://ai.google.dev/)
 
 **The Roaming Hub** is a next-generation hotel booking platform that combines the power of the **MERN stack** with a specialized **AI RAG (Retrieval-Augmented Generation) Assistant**. Unlike traditional travel sites, it features a context-aware chatbot that "reads" your specific property database to provide mathematically accurate, hallucination-free recommendations.
 
